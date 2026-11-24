@@ -1,0 +1,3 @@
+package care.tend.planner;
+import jakarta.persistence.*; import java.time.*; import java.util.*;
+@Entity @Table(name="weekly_plan") public class WeeklyPlan{@Id@GeneratedValue(strategy=GenerationType.UUID)public UUID id;@Column(name="user_id",nullable=false)public UUID userId;@Column(name="week_start",nullable=false)public LocalDate weekStart;@Column(columnDefinition="text[]",nullable=false)public String[] priorities=new String[0];@Column(columnDefinition="text")public String notes;@Column(columnDefinition="text")public String reflection;@Column(name="created_at",insertable=false,updatable=false)public Instant createdAt;@Column(name="updated_at",insertable=false)public Instant updatedAt;}

@@ -1,0 +1,5 @@
+package care.tend.planner;
+import care.tend.common.CurrentUser;import org.springframework.web.bind.annotation.*;import java.time.*;import java.util.*;
+@RestController@RequestMapping("/api/planner")public class PlannerController{private final WeeklyPlanRepository repo;public PlannerController(WeeklyPlanRepository repo){this.repo=repo;}public record Request(String[] priorities,String notes,String reflection){}
+ @GetMapping("/{weekStart}")WeeklyPlan get(@PathVariable LocalDate weekStart){return repo.findByUserIdAndWeekStart(CurrentUser.id(),weekStart).orElseGet(()->{var p=new WeeklyPlan();p.userId=CurrentUser.id();p.weekStart=weekStart;return p;});}
+ @PutMapping("/{weekStart}")WeeklyPlan save(@PathVariable LocalDate weekStart,@RequestBody Request r){var p=repo.findByUserIdAndWeekStart(CurrentUser.id(),weekStart).orElseGet(()->{var n=new WeeklyPlan();n.userId=CurrentUser.id();n.weekStart=weekStart;return n;});p.priorities=Arrays.stream(Optional.ofNullable(r.priorities()).orElse(new String[0])).filter(s->s!=null&&!s.isBlank()).limit(3).toArray(String[]::new);p.notes=r.notes();p.reflection=r.reflection();return repo.save(p);}}

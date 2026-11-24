@@ -1,0 +1,15 @@
+spring:
+  application.name: tend-backend
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/tend}
+    username: ${POSTGRES_USER:tend}
+    password: ${POSTGRES_PASSWORD:tend}
+  jpa:
+    open-in-view: false
+    hibernate.ddl-auto: validate
+  flyway.enabled: true
+server.port: ${PORT:8080}
+tend:
+  jwt-secret: ${JWT_SECRET:development-only-secret-change-this-now-123456789}
+  frontend-origin: ${FRONTEND_ORIGIN:http://localhost:5173}
+springdoc.swagger-ui.path: /swagger-ui.html

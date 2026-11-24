@@ -1,0 +1,4 @@
+package care.tend.habit;
+import jakarta.persistence.*;import java.math.BigDecimal;import java.time.*;import java.util.UUID;
+@Entity@Table(name="habit_completion",uniqueConstraints=@UniqueConstraint(columnNames={"user_id","habit_id","completion_date"}))
+public class HabitLog{@Id@GeneratedValue(strategy=GenerationType.UUID)public UUID id;@Column(name="user_id",nullable=false)public UUID userId;@Column(name="habit_id",nullable=false)public UUID habitId;@Column(name="completion_date",nullable=false)public LocalDate completionDate;@Column(nullable=false)public String state;@Column(name="actual_value")public BigDecimal actualValue;@Column(columnDefinition="text")public String note;@Column(name="created_at",insertable=false,updatable=false)public Instant createdAt;@Column(name="updated_at",insertable=false)public Instant updatedAt;}

@@ -1,0 +1,3 @@
+package care.tend.habit;
+import care.tend.item.LifeItem;import java.math.BigDecimal;import java.time.LocalDate;import java.util.Arrays;
+public final class HabitRules{private HabitRules(){}public static String deriveState(LifeItem h,BigDecimal value){if(value==null)return"COMPLETED";if("AVOIDANCE".equals(h.habitType)&&value.signum()==0)return"COMPLETED";if(h.idealTarget!=null&&value.compareTo(h.idealTarget)>=0)return"COMPLETED";if(h.minimumTarget!=null&&value.compareTo(h.minimumTarget)>=0)return"PARTIAL";return"MISSED";}public static boolean isScheduled(LifeItem h,LocalDate d){if(h.selectedWeekdays==null||h.selectedWeekdays.length==0)return true;short dow=(short)d.getDayOfWeek().getValue();return Arrays.asList(h.selectedWeekdays).contains(dow);}}

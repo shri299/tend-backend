@@ -11,6 +11,8 @@ Java 21 / Spring Boot API for **Tend**, a private, kind personal-life companion.
 - Mood/energy/stress check-ins
 - Weekly priorities, notes, and reflection
 - Deterministic energy-based dashboard suggestion and descriptive counts
+- Schedule-aware monthly habit logs with idempotent updates and gentle status semantics
+- Task postponement history, persistent focus sessions, goal milestones/progress, and range summaries
 - Validation, global error responses, Flyway constraints/indexes, and Swagger UI
 
 All reads and writes derive the user ID from the verified token. Synthetic data only is used in tests.
@@ -33,4 +35,4 @@ For a host JVM workflow, start only PostgreSQL with `docker compose up db -d`, t
 
 Set a strong random `JWT_SECRET` outside local development. Credentials and health/journal content are never logged. Production deployment should add TLS, token rotation/revocation, authentication rate limiting through a durable store or gateway, private object storage for future attachments, and a formal backup/deletion policy.
 
-See [architecture](docs/ARCHITECTURE.md), [schema](docs/SCHEMA.md), and [roadmap](ROADMAP.md).
+See [architecture](docs/ARCHITECTURE.md), [schema](docs/SCHEMA.md), [Phase 1.1 APIs](docs/PHASE_1_1_API.md), and [roadmap](ROADMAP.md).

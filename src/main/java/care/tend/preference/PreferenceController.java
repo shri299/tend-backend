@@ -1,0 +1,5 @@
+package care.tend.preference;
+import care.tend.common.CurrentUser;import org.springframework.jdbc.core.JdbcTemplate;import org.springframework.web.bind.annotation.*;import java.util.UUID;
+@RestController@RequestMapping("/api/preferences")public class PreferenceController{private final JdbcTemplate jdbc;public PreferenceController(JdbcTemplate jdbc){this.jdbc=jdbc;}public record Preference(boolean lowEnergyMode,boolean showStreaks){}
+ @GetMapping Preference get(){var uid=CurrentUser.id();return jdbc.query("select low_energy_mode,show_streaks from user_preference where user_id=?",(rs,n)->new Preference(rs.getBoolean(1),rs.getBoolean(2)),uid).stream().findFirst().orElse(new Preference(false,false));}
+ @PutMapping Preference save(@RequestBody Preference p){UUID uid=CurrentUser.id();jdbc.update("insert into user_preference(user_id,low_energy_mode,show_streaks) values (?,?,?) on conflict(user_id) do update set low_energy_mode=excluded.low_energy_mode,show_streaks=excluded.show_streaks,updated_at=now()",uid,p.lowEnergyMode(),p.showStreaks());return p;}}

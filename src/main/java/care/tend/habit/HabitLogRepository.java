@@ -1,0 +1,2 @@
+package care.tend.habit;import org.springframework.data.jpa.repository.JpaRepository;import java.time.LocalDate;import java.util.*;
+public interface HabitLogRepository extends JpaRepository<HabitLog,UUID>{List<HabitLog>findAllByUserIdAndCompletionDateBetweenOrderByCompletionDate(UUID userId,LocalDate from,LocalDate to);Optional<HabitLog>findByUserIdAndHabitIdAndCompletionDate(UUID userId,UUID habitId,LocalDate date);}

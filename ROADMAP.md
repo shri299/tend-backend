@@ -5,8 +5,12 @@
 - [x] Authentication, migrations, categories, brain dump, goals, tasks, flexible habits
 - [x] Mood/energy check-ins, weekly planner, dashboard, basic descriptive insights
 - [x] Responsive API integration, Docker, CI, Swagger, architecture/schema docs
-- [ ] Habit completion state endpoint and monthly calendar
-- [ ] Goal progress history and task postponement-barrier prompts
+- [x] Habit completion states, actual values, schedule-aware monthly calendar and core metrics
+- [x] Goal milestones/progress history and optional task postponement-barrier prompts
+- [x] Persistent focus sessions with pause/resume/outcome history
+- [x] Deterministic range summaries and low-energy/streak preferences API
+- [ ] Category dashboards, category ordering UI, and richer cross-category activity feed
+- [ ] Monthly reflection persistence and advanced frequency-habit analytics
 - [ ] Refresh tokens, durable auth rate limiting, account export/deletion
 
 ## Phase 2 — personal wellbeing
